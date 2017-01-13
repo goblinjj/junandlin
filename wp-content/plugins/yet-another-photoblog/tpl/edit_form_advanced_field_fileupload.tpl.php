@@ -10,16 +10,16 @@
 		<?php $imageData = $GLOBALS['imageData']; ?>
 		<div class="inside">
 			<div class="row">
-				<label for="area">地区：</label><input value="<?= $imageData['area'] ?>" type="text" id="area" name="area">
+				<label for="area">地区：</label><input value="<?php echo $imageData['area'] ?>" type="text" id="area" name="area">
 			</div>
 			<div class="row">
-				<label for="scenic">地点：</label><input value="<?= $imageData['scenic'] ?>" type="text" id="scenic" name="scenic">
+				<label for="scenic">地点：</label><input value="<?php echo $imageData['scenic'] ?>" type="text" id="scenic" name="scenic">
 			</div>
 			<div class="row">
-				<label for="width">图片宽度：</label><input value="<?= $imageData['width'] ?>" type="text" id="width" name="width">
+				<label for="width">图片宽度：</label><input value="<?php echo $imageData['width'] ?>" type="text" id="width" name="width">
 			</div>
 			<div class="row">
-				<label for="height">图片高度：</label><input value="<?= $imageData['height'] ?>" type="text" id="height" name="height">
+				<label for="height">图片高度：</label><input value="<?php echo $imageData['height'] ?>" type="text" id="height" name="height">
 			</div>
 
 			<!-- Why can't browsers calculate the height of a div? -->
@@ -46,16 +46,16 @@
 		<h3><?php _e('YAPB Image', 'yapb') ?></h3>
 		<div class="inside">
 			<div class="row">
-				<label for="area">地区：</label><input value="<?= $imageData['area'] ?>"  type="text" id="area" name="area">
+				<label for="area">地区：</label><input value="<?php echo $imageData['area'] ?>"  type="text" id="area" name="area">
 			</div>
 			<div class="row">
-				<label for="scenic">地点：</label><input value="<?= $imageData['scenic'] ?>" type="text" id="scenic" name="scenic">
+				<label for="scenic">地点：</label><input value="<?php echo $imageData['scenic'] ?>" type="text" id="scenic" name="scenic">
 			</div>
 			<div class="row">
-				<label for="width">图片宽度：</label><input value="<?= $imageData['width'] ?>" type="text" id="width" name="width">
+				<label for="width">图片宽度：</label><input value="<?php echo $imageData['width'] ?>" type="text" id="width" name="width">
 			</div>
 			<div class="row">
-				<label for="height">图片高度：</label><input value="<?= $imageData['height'] ?>" type="text" id="height" name="height">
+				<label for="height">图片高度：</label><input value="<?php echo $imageData['height'] ?>" type="text" id="height" name="height">
 			</div>
 			<input type="file" id="yapb_imageupload" name="yapb_imageupload" size="30" tabindex="1" value="" id="imageupload" style="background-color:white;" onChange="toggleCategory(true);" /><input type="button" value="<?php _e('clear field', 'yapb') ?>" onClick="$('yapb_imageupload').value='';toggleCategory(false);" /><br/>
 			<input type="checkbox" name="exifdate" id="checkbox_yapb_exifdate" value="1" <?php if(get_option('yapb_check_post_date_from_exif')): ?>checked<?php endif ?> /> <label for="checkbox_yapb_exifdate"><?php _e('Post date from image exif data if available', 'yapb') ?></label><br>
