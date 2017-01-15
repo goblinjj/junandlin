@@ -6,7 +6,8 @@ if ($_GET['interface']) {
     mysql_select_db($wpdb->dbname, $conn);
     mysql_query("set names 'utf8'");
     $sql = <<<sql
-    SELECT post.post_title, post.post_content, post.post_modified, img.`URI` from wp_posts AS post
+    SELECT post.post_title, post.post_content, post.post_modified, img.`URI`, img.height, img.width
+    from wp_posts AS post
     LEFT JOIN `wp_yapbimage` AS img on post.id = img.`post_id`
     where post_status = 'publish' and img.`URI` is not null
     order by post.id desc

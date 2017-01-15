@@ -1,5 +1,5 @@
 <?php
-
+exit;
 if ($_GET['interface']) {
     $page = $_GET['page'] ? $_GET['page'] : 1;
     $limit = "limit " . (($page - 1)*10) . ",10";
@@ -7,7 +7,7 @@ if ($_GET['interface']) {
     mysql_select_db($wpdb->dbname, $conn);
     mysql_query("set names 'utf8'");
     $sql = <<<sql
-    SELECT post.post_title, post.post_content, post.post_modified, img.`URI` from wp_posts AS post
+    SELECT post.post_title, post.post_content, post.post_modified, img.`URI` from wp_posts AS post, post.width, post.height
     LEFT JOIN `wp_yapbimage` AS img on post.id = img.`post_id`
     where post_status = 'publish' and img.`URI` is not null
     order by post.id desc
@@ -16,6 +16,7 @@ sql;
     $query = mysql_query($sql);
     $data = array();
     while($row = mysql_fetch_array($query)) {
+        var_dump($row);
         $data[] = array(
             'title' => $row['post_title'],
             'width' => $row['width'],
