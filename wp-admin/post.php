@@ -168,9 +168,8 @@ case 'edit':
 		wp_enqueue_script('admin-comments');
 		enqueue_comment_hotkeys_js();
 	}
-
-    $conn = mysql_connect("localhost","root","");
-	mysql_select_db('linlin', $conn);
+    $conn = mysql_connect($wpdb->dbhost,$wpdb->dbuser,$wpdb->dbpassword);
+	mysql_select_db($wpdb->dbname, $conn);
 	mysql_query("set names 'utf8'");
 	$query = mysql_query("select * from `wp_yapbimage` where `post_id` = ". $post->ID);
 	$GLOBALS['imageData'] = mysql_fetch_assoc($query);

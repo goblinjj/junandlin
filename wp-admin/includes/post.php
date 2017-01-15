@@ -402,8 +402,8 @@ function edit_post( $post_data = null ) {
 	}
 
 	if ($_POST['area'] || $_POST['scenic']) {
-	    $conn = mysql_connect("localhost","root","");
-		mysql_select_db('linlin', $conn);
+	    $conn = mysql_connect($wpdb->dbhost,$wpdb->dbuser,$wpdb->dbpassword);
+		mysql_select_db($wpdb->dbname, $conn);
 		mysql_query("set names 'utf8'");
 		mysql_query("update `wp_yapbimage` set area = '{$_POST['area']}', scenic = '{$_POST['scenic']}', width = '{$_POST['width']}', height = '{$_POST['height']}' where post_id = ". $post_ID);
 	}

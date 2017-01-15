@@ -3,8 +3,8 @@
 if ($_GET['interface']) {
     $page = $_GET['page'] ? $_GET['page'] : 1;
     $limit = "limit " . (($page - 1)*10) . ",10";
-    $conn = mysql_connect("localhost","root","");
-    mysql_select_db('linlin', $conn);
+    $conn = mysql_connect($wpdb->dbhost,$wpdb->dbuser,$wpdb->dbpassword);
+    mysql_select_db($wpdb->dbname, $conn);
     mysql_query("set names 'utf8'");
     $sql = <<<sql
     SELECT post.post_title, post.post_content, post.post_modified, img.`URI` from wp_posts AS post

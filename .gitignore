@@ -1,4 +1,5 @@
 # Xcode
+wp-content/uploads/
 .DS_Store
 build
 /*.pbxuser
