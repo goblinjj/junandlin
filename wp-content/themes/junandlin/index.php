@@ -1199,9 +1199,11 @@ window.onload = function(){
 getImage();
 function lockit () {
     flag = true;
+    layer.load();
 }
 function unlock () {
     flag = false;
+    clearLoading();
 }
 function clearLoading () {
     layer.closeAll('loading');
@@ -1242,7 +1244,10 @@ function getImage () {
                     area: cWidth,
                     skin: 'layui-layer-nobg', //没有背景色
                     shadeClose: true,
-                    content: $('#imgPop')
+                    content: $('#imgPop'),
+                    end: function () {
+                        clearLoading();
+                    }
                 });
                 return false;
             });
