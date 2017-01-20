@@ -10,7 +10,7 @@ if ($_GET['interface']) {
     from wp_posts AS post
     LEFT JOIN `wp_yapbimage` AS img on post.id = img.`post_id`
     where post_status = 'publish' and img.`URI` is not null
-    order by img.time, post.id
+    order by img.time, post.id desc
     {$limit}
 sql;
     $query = mysql_query($sql);
