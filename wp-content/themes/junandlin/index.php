@@ -152,6 +152,9 @@ a:hover{color:#84C2B7;}
         .cboxSlideshow_on #cboxSlideshow:hover{background-position:-100px -25px;}
         .cboxSlideshow_off #cboxSlideshow{background-position:-100px 0px; right:44px;}
         .cboxSlideshow_off #cboxSlideshow:hover{background-position:-75px -25px;}
+.layui-layer.layui-layer-loading.layer-anim{
+    z-index: 119891016;
+}
 </style>
 <script type="text/javascript">
 /*!
