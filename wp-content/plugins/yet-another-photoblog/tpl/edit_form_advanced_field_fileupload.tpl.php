@@ -1,5 +1,4 @@
 <?php if (property_exists($this, 'image')): ?>
-
 	<!-- This fieldset gets rendered if we have an image attached to the post: Replace -->
 <style type="text/css">
 .row {margin-bottom: 5px;}
@@ -20,6 +19,9 @@
 			</div>
 			<div class="row">
 				<label for="height">图片高度：</label><input value="<?php echo $imageData['height'] ?>" type="text" id="height" name="height">
+			</div>
+			<div class="row time">
+				<label for="time">时间：</label><input value="<?php echo $imageData['time'] ? $imageData['time'] : date('Y-m-d\TH:i') ?>" type="datetime-local" id="time" name="time">
 			</div>
 
 			<!-- Why can't browsers calculate the height of a div? -->
@@ -56,6 +58,9 @@
 			</div>
 			<div class="row">
 				<label for="height">图片高度：</label><input value="<?php echo $imageData['height'] ?>" type="text" id="height" name="height">
+			</div>
+			<div class="row time">
+				<label for="time">时间：</label><input value="<?php echo $imageData['time'] ? $imageData['time'] : date('Y-m-d\TH:i') ?>" type="datetime-local" id="time" name="time">
 			</div>
 			<input type="file" id="yapb_imageupload" name="yapb_imageupload" size="30" tabindex="1" value="" id="imageupload" style="background-color:white;" onChange="toggleCategory(true);" /><input type="button" value="<?php _e('clear field', 'yapb') ?>" onClick="$('yapb_imageupload').value='';toggleCategory(false);" /><br/>
 			<input type="checkbox" name="exifdate" id="checkbox_yapb_exifdate" value="1" <?php if(get_option('yapb_check_post_date_from_exif')): ?>checked<?php endif ?> /> <label for="checkbox_yapb_exifdate"><?php _e('Post date from image exif data if available', 'yapb') ?></label><br>

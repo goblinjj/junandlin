@@ -79,7 +79,8 @@ final class _WP_Editors {
 		$settings = apply_filters( 'wp_editor_settings', $settings, $editor_id );
 
 		$set = wp_parse_args( $settings, array(
-			'wpautop'             => true,
+			// 'wpautop'             => true, goblin
+			'wpautop'             => false,
 			'media_buttons'       => true,
 			'default_editor'      => '',
 			'drag_drop_upload'    => false,
@@ -1111,7 +1112,7 @@ final class _WP_Editors {
 		}
 
 		$mce_translation = self::get_translation();
-		
+
 		foreach ( $mce_translation as $name => $value ) {
 			if ( is_array( $value ) ) {
 				$mce_translation[$name] = $value[0];

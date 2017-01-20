@@ -172,8 +172,9 @@ case 'edit':
 	mysql_select_db($wpdb->dbname, $conn);
 	mysql_query("set names 'utf8'");
 	$query = mysql_query("select * from `wp_yapbimage` where `post_id` = ". $post->ID);
-	$GLOBALS['imageData'] = mysql_fetch_assoc($query);
-
+	$imageData = mysql_fetch_assoc($query);
+	$imageData['time'] = date('Y-m-d\TH:i', $imageData['time']);
+	$GLOBALS['imageData'] = $imageData;
 	include( ABSPATH . 'wp-admin/edit-form-advanced.php' );
 
 	break;
