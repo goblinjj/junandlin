@@ -405,7 +405,8 @@ function edit_post( $post_data = null ) {
 	    $conn = mysql_connect($wpdb->dbhost,$wpdb->dbuser,$wpdb->dbpassword);
 		mysql_select_db($wpdb->dbname, $conn);
 		mysql_query("set names 'utf8'");
-		mysql_query("update `wp_yapbimage` set area = '{$_POST['area']}', scenic = '{$_POST['scenic']}', width = '{$_POST['width']}', height = '{$_POST['height']}' where post_id = ". $post_ID);
+		$dataTime = strtotime($_POST['time']);
+		mysql_query("update `wp_yapbimage` set area = '{$_POST['area']}', scenic = '{$_POST['scenic']}', width = '{$_POST['width']}', height = '{$_POST['height']}', time = '{$dataTime}' where post_id = ". $post_ID);
 	}
 
 	return $post_ID;

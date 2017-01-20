@@ -6,11 +6,11 @@ if ($_GET['interface']) {
     mysql_select_db($wpdb->dbname, $conn);
     mysql_query("set names 'utf8'");
     $sql = <<<sql
-    SELECT post.id as post_id, post.post_title, post.post_content, post.post_modified, img.`URI`, img.height, img.width
+    SELECT post.id as post_id, post.post_title, post.post_content, post.post_modified, img.`URI`, img.height, img.width, img.time
     from wp_posts AS post
     LEFT JOIN `wp_yapbimage` AS img on post.id = img.`post_id`
     where post_status = 'publish' and img.`URI` is not null
-    order by post.id desc
+    order by img.time, post.id desc
     {$limit}
 sql;
     $query = mysql_query($sql);
@@ -23,6 +23,7 @@ sql;
             'src' => $row['URI'],
             'post' => $row['post_id'],
             'content' => $row['post_content'],
+            'time' => date('Y-m-d H:i', $row['time']),
         );
     }
 
@@ -39,6 +40,7 @@ sql;
 <style type="text/css">
 /* 标签重定义 */
 body{padding:0;margin:0;background:#bcdedf;background:#FDD3E1;}
+*{border-radius: 8px;}
 img{border:none;}
 .hide{display: none;}
 .imgText{
@@ -1213,7 +1215,7 @@ function getImage () {
             for(var i in data){
                 var ratio = 260 / data[i].width;
                 var height = data[i].height * ratio
-                var box = $('<div class="box"> <a  class="group1 cboxElement" href="'+data[i].src+'"><div class="info"> <div class="pic"><img width="260px" height="'+height+'px" src="/wp-content/plugins/yet-another-photoblog/YapbThumbnailer.php?post_id='+data[i].post+'&w=260&h='+height+'&fltr[]=usm|60|0.5|3" data-src="'+data[i].src+'" data-height="'+data[i].height+'" data-content="'+data[i].content+'" data-width="'+data[i].width+'"></div> <div class="title"><a src="">'+data[i].title+'</a></div> </div> </a></div>');
+                var box = $('<div class="box"> <a  class="group1 cboxElement" href="'+data[i].src+'"><div class="info"> <div class="pic"><img width="260px" height="'+height+'px" src="/wp-content/plugins/yet-another-photoblog/YapbThumbnailer.php?post_id='+data[i].post+'&w=260&h='+height+'&fltr[]=usm|60|0.5|3" data-src="'+data[i].src+'" data-height="'+data[i].height+'" data-content="'+data[i].content+'" data-width="'+data[i].width+'" data-time="'+data[i].time+'" data-title="'+data[i].title+'"></div> <div class="title"><a src="">'+data[i].title+'</a></div> </div> </a></div>');
                 $('#wrap').append(box);
             }
             PBL('wrap','box');
@@ -1231,7 +1233,7 @@ function getImage () {
                 }
                 var cWidth = imgWidth * bili;
                 var cHeight = imgHeight * bili;
-                $('#imgPop').html("<img onLoad='clearLoading()' width='"+cWidth+"' height='"+cHeight+"' src='"+$(_this).data('src')+"'><div class='imgText' style='width: "+(cWidth-40)+"px; max-height: "+(cHeight*0.3-40)+"px; margin-left: -"+((cWidth)*0.5)+"px; '><font>"+$(_this).data('content')+"</font></div>");
+                $('#imgPop').html("<img onLoad='clearLoading()' width='"+cWidth+"' height='"+cHeight+"' src='"+$(_this).data('src')+"'><div class='imgText' style='width: "+(cWidth-40)+"px; max-height: "+(cHeight*0.3-40)+"px; margin-left: -"+((cWidth)*0.5)+"px; '><div style='font-size: 19px; margin-bottom: 10px; '>"+$(_this).data('title')+" - "+$(_this).data('time')+"</div><font>"+$(_this).data('content')+"</font></div>");
                 // 点击弹出层
                 layer.open({
                     type: 1,
